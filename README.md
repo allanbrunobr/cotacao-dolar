@@ -1,36 +1,39 @@
 # Teste técnico -  Cotação-Dólar
 
-# Sistema de cotação do dolar
-
-O teste proposto foi para consumir uma API externa do BCB - Banco Central do Brasil. 
+O teste proposto foi para consumir uma API externa do BCB - Banco Central do Brasil a fim de saber a cotação do dólar. 
 
 # Tecnologias utilizadas
-Foi utilizado o framework Quarkus e RestClient para consumo da API do BCB. O RestClient foi utilizado também para o segundo microserviço que consome o primeiro e retorna a devida resposta. 
-
-O Swagger foi utilizado para teste da API e o docker foi utilizado para criação de containers para cada microserviço. O QuarkusTest também foi utilizado para testes de integração
+Foi utilizado o framework Quarkus e o RestClient para o consumo da API do BCB. O RestClient foi utilizado também para o o consumo da mensagem do primeiro microservice (client). 
 
 # Portas
   
-O Microserviço de consumo da API está na porta 8082
+O Microserviço de consumo da API está na porta 8082.
 
 # Swagger
 
-O swagger não está funcionando dentro do Docker. Tentei várias vezes, mas acho que deixei passar algo. Para verificar a documentação via Swagger, precisa executar o projeto por alguma IDE (Eclipse,s IntelliJ etc). Após a importação do projeto pela IDE, a documentação da API pode ser acessada pela seguinte url: 
+O swagger **não** está funcionando dentro do Docker. Tentei várias vezes, mas acho que deixei passar algo. Para verificar a documentação via Swagger, precisa clonar o projeto e depois importar por alguma IDE (Eclipse, IntelliJ etc). Após a importação do projeto pela IDE, deve-se rodar a aplicação e acessar a documentação da API pela seguinte url: 
 
 http://localhost:8082/q/swagger-ui
+
+# Exceptions
+As mensagens das exceções dentro do docker não estão sndo exibidas. Mais uma vez, posso ter deixado passar algo com o Docker. Mas ao executar o programa pela IDE ou até mesmo por um executável (*jar), elas são exibidas na tela.
+Caso queira criar um executável, basta ir na pasta raiz do projeto e digitar o seguinte código:
+```mvn package -Dquarkus.package.type=native -Dquarkus.native.container-build=true -Dquarkus.container-image.build=true -Dmaven.test.skip=true```
+Após o término, o projeto irá criar uma pasta _target_, dentro da pasta foi gerada outra pasta chamada _quarkus-app_. Dentro dessa pasta se encontra o executável **quarkus-run.jar**
+
 
 # Docker
 
 Para criar uma imagem, foi utilizado o Docker-compose. Para executar a aplicação no docker, basta fazer clone do projeto, navegar até a pasta raiz e, então, executar o seguinte comando:
 
-docker-compose -f docker-compose.yaml up
+```docker-compose -f docker-compose.yaml up```
 
-Feito isso, se pode utilizar o swagger para testes, o curl para requisição GET ou acessar direto por um navegador através de uma url que está exemplificada abaixo:
+Para acessar a requisição GET, pode usar o curl ou acessar direto por um navegador através da URL:
 
-http://localhost:8080/v1/cotacao?dataCotacao=03-03-2022
-
-swagger: http://localhost:8080/q/swagger-ui
+http://localhost:8082/v1/api/client/periodo/03-04-2021
+ou
+http://localhost:8082/v1/api/client/03-04-2021
 
 # Testes
 
-Infelizmente, não fiz os testes. Nunca fiz parte de alguma Squad de testes, por isso, deixe-os para estudar agora depois que vi a necessidade dos testes automatizados.
+Infelizmente, não fiz os testes. Nunca fiz parte de alguma Squad de testes por isso, preferi não realizar do que não saber como explicar se questionado. Mas, vendo agora a necessidade, já estou correndo atrás.
