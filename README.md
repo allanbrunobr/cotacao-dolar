@@ -11,7 +11,7 @@ O Microserviço de consumo da API está na porta 8082.
 
 # Swagger
 
-O swagger **não** está funcionando dentro do Docker. Tentei várias vezes, mas acho que deixei passar algo. Para verificar a documentação via Swagger, precisa clonar o projeto e depois importar por alguma IDE (Eclipse, IntelliJ etc). Após a importação do projeto pela IDE, deve-se rodar a aplicação e acessar a documentação da API pela seguinte url: 
+Para testes e documentação das APIs, após iniciar a aplicação, acesse o Swagger pela seguinte url: 
 
 http://localhost:8082/q/swagger-ui
 
@@ -30,9 +30,10 @@ Para criar uma imagem, foi utilizado o Docker-compose. Para executar a aplicaç�
 
 Para acessar a requisição GET, pode usar o curl ou acessar direto por um navegador através da URL:
 
-http://localhost:8082/v1/api/client/periodo/03-04-2021
+Pesquisa por período: http://localhost:8082/v1/api/client/periodo/03-04-2021
 ou
-http://localhost:8082/v1/api/client/03-04-2021
+
+Pesquisa apenas da data: http://localhost:8082/v1/api/client/03-04-2021
 
 # Testes
 
